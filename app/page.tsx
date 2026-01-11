@@ -1,3 +1,7 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+
 export default function Portfolio() {
   const projects = [
     {
@@ -71,6 +75,29 @@ export default function Portfolio() {
     },
   ]
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in')
+          }
+        })
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px 0px -150px 0px'
+      }
+    )
+
+    const sections = document.querySelectorAll('.fade-in-section')
+    sections.forEach((section) => observer.observe(section))
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section))
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-white text-black">
       {/* Header */}
@@ -89,7 +116,7 @@ export default function Portfolio() {
       </header>
 
       {/* Hero Section */}
-      <section className="border-b border-black">
+      <section className="fade-in-section border-b border-black">
         <div className="grid grid-cols-12 gap-0 px-6 py-16 md:px-12 md:py-24">
           <div className="col-span-12 md:col-span-10">
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none text-balance">
@@ -105,7 +132,7 @@ export default function Portfolio() {
       </section>
 
       {/* Selected Works */}
-      <section className="border-b border-black">
+      <section className="fade-in-section border-b border-black">
         <div className="grid grid-cols-12 gap-0 px-6 py-12 md:px-12 md:py-16">
           <div className="col-span-12 mb-12">
             <h3 className="text-xs uppercase tracking-widest font-mono text-[#666666]">Selected Works</h3>
@@ -141,7 +168,7 @@ export default function Portfolio() {
       </section>
 
       {/* Experience Section */}
-      <section className="border-b border-black">
+      <section className="fade-in-section border-b border-black">
         <div className="grid grid-cols-12 gap-0 px-6 py-12 md:px-12 md:py-16">
           <div className="col-span-12 mb-12">
             <h3 className="text-xs uppercase tracking-widest font-mono text-[#666666]">Experience</h3>
@@ -165,7 +192,7 @@ export default function Portfolio() {
       </section>
 
       {/* Education Section */}
-      <section className="border-b border-black">
+      <section className="fade-in-section border-b border-black">
         <div className="grid grid-cols-12 gap-0 px-6 py-12 md:px-12 md:py-16">
           <div className="col-span-12 mb-12">
             <h3 className="text-xs uppercase tracking-widest font-mono text-[#666666]">Education</h3>
@@ -189,7 +216,7 @@ export default function Portfolio() {
       </section>
 
       {/* Footer / Contact */}
-      <footer>
+      <footer className="fade-in-section">
         <div className="grid grid-cols-12 gap-0 px-6 py-12 md:px-12 md:py-16">
           <div className="col-span-12 md:col-span-6">
             <h3 className="text-xs uppercase tracking-widest font-mono text-[#666666] mb-6">Contact</h3>
