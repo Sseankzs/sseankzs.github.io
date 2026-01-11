@@ -107,7 +107,7 @@ export default function Portfolio() {
             <h1 className="text-base md:text-lg font-medium tracking-tight">Kong Zhi Syuen</h1>
           </div>
           <div className="col-span-6 md:col-span-6 flex items-center justify-end gap-2">
-            <a href="/KongZhiSyuen_Resume_2026.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:underline">
+            <a href="/resume_2026.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:underline">
               <span className="w-2 h-2 bg-[#FF4F00] pulse-dot"></span>
               <span className="text-sm md:text-base">Resume</span>
             </a>
