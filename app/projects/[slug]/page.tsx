@@ -186,12 +186,6 @@ const projectData: Record<
   },
 }
 
-export async function generateStaticParams() {
-  return Object.keys(projectData).map((slug) => ({
-    slug: slug,
-  }))
-}
-
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const project = projectData[slug]
@@ -259,7 +253,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           {project.images.map((image, index) => (
             <div key={index} className="col-span-12 border-t border-black">
               <div className="px-6 py-12 md:px-12 md:py-16">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={image.url || "/placeholder.svg"} alt={image.caption} className="w-full mb-4" />
                 <p className="text-sm font-mono text-[#666666]">{image.caption}</p>
               </div>
