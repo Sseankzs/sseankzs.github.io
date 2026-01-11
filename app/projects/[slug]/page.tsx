@@ -186,6 +186,12 @@ const projectData: Record<
   },
 }
 
+export async function generateStaticParams() {
+  return Object.keys(projectData).map((slug) => ({
+    slug: slug,
+  }))
+}
+
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const project = projectData[slug]
